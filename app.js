@@ -31,7 +31,7 @@ const checkLength = (input, min) => {
   }
 };
 
-const checkForm = (input) => {
+const validateRequiredFields = (input) => {
   input.forEach((el) => {
     if (el.value === "") {
       showError(el, el.placeholder);
@@ -65,17 +65,17 @@ const checkErrors = () => {
     if (el.classList.contains("error")) {
       errorCount++;
     }
-
-    if (errorCount === 0) {
-      popup.classList.add("show-popup");
-    }
   });
+
+  if (errorCount === 0) {
+    popup.classList.add("show-popup");
+  }
 };
 
 sendBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  checkForm([userName, password, rePassword, email]);
+  validateRequiredFields([userName, password, rePassword, email]);
   checkLength(userName, 3);
   checkLength(password, 8);
   checkPass(password, rePassword);
